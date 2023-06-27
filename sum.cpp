@@ -16,7 +16,7 @@ int main()
     cout<<"Enter number 2"<<endl;
     cin>>b;
 
-    cout<<"Sum of Number 1 and number 2 is "<<sum(a,b)<<endl;
+    cout<<"Sum is "<<sum(a,b)<<endl; //tu betichod hai
 
     return 0;
 }
