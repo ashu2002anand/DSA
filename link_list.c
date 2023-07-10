@@ -19,6 +19,7 @@ void create(int A[],int n)
         t=(struct Node *)malloc(sizeof(struct Node));
         t->data=A[i];
         t->next=NULL;
+        last->next=t;
         last=t;
     }
     
@@ -28,13 +29,14 @@ void create(int A[],int n)
 void display(struct Node *p){
     while (p!=NULL)
     {
-        printf("%d",p->data);
+        printf("%d ",p->data);
         p=p->next;
     }
 }
 
 int main()
 {
+    struct Node *temp;
     int A[]={12,34,56,23,45};
     
     create(A,5);
