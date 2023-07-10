@@ -34,6 +34,92 @@ void display(struct Node *p){
     }
 }
 
+//counting number of nodes
+int count(struct Node *p)
+{
+    int length=0;
+    while (p)
+    {
+        length++;
+        p=p->next;
+    }
+    return length;
+}
+
+int Rcount(struct Node *p){
+    if(p!=NULL)
+        return Rcount(p->next)+1;
+    else
+        return 0;
+}
+
+//sum of all element of LL
+int sum(struct Node *p){
+    int ans=0;
+    while(p){
+        ans+=p->data;
+        p=p->next;
+    }
+}
+
+int Rsum(struct Node *p){
+    if(p==NULL)
+        return 0;
+    else
+        return Rsum(p->next)+p->data;
+}
+
+//finding maxm element of LL
+int maxm(struct Node *p){
+    int max = INT_MIN;
+    while (p)
+    {
+        if(p->data > max)
+            max=p->data;
+        
+        p=p->next;
+    }
+    return max;
+}
+
+int Rmaxm(struct Node *p){
+    int x=0;
+
+    if (p==0)
+        return INT_MIN;
+    x=Rmaxm(p->next);
+    if(x>p->data)
+        return x;
+    else
+        return p->data;
+}
+
+//srechinng element in LL
+struct Node * Search(struct Node *p,int key)
+{
+    struct Node *q;
+    while (p)
+    {
+        if(key==p->data){
+            q->next=p->next;
+            p->next=first;
+            first=p;
+            return p;
+        }
+        q=p;
+        p=p->next;
+    }
+    return NULL;
+}
+struct Node * Rsearch(struct Node *p,int key)
+{
+    if (p==NULL)
+        return NULL;
+    if(p->data==key)
+        return p;
+    return Rsearch(p->next,key);
+    
+}
 int main()
 {
     struct Node *temp;
@@ -41,7 +127,8 @@ int main()
     
     create(A,5);
     
+    temp=Search(first,56);
+    (temp!=0)?printf("\nkey is found %d\n",temp->data):printf("\nKey is not found\n");
     display(first);
-
     return 0;
 }
