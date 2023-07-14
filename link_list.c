@@ -120,15 +120,42 @@ struct Node * Rsearch(struct Node *p,int key)
     return Rsearch(p->next,key);
     
 }
+//inserting in LL
+void Insert(struct Node *p,int index,int x)
+{
+    struct Node *t;
+
+    if (index < 0 || index > count(p))
+        return;
+
+    t = (struct Node *)malloc(sizeof(struct Node));
+    t->data=x;
+
+    if(index==0){
+        t->next=first;
+        first=t;
+    }
+    else
+    {
+        for (int i = 0; i < index-1; i++)
+            p=p->next;
+        
+        t->next = p->next;
+        p->next = t;
+        
+    }
+}
+
 int main()
 {
     struct Node *temp;
     int A[]={12,34,56,23,45};
     
     create(A,5);
-    
-    temp=Search(first,56);
-    (temp!=0)?printf("\nkey is found %d\n",temp->data):printf("\nKey is not found\n");
+    display(first);    
+    // temp=Search(first,56);
+    // (temp!=0)?printf("\nkey is found %d\n",temp->data):printf("\nKey is not found\n");
+    Insert(first,4,4);
     display(first);
     return 0;
 }
