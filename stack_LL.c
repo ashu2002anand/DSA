@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 struct node
 {
     int data;
@@ -20,6 +20,13 @@ void push(int x)
         t->next=top;
         top=t;
     }   
+}
+
+bool Is_empty(){
+    if (top->next==NULL)
+        return true;
+    else
+        return false;
 }
 
 int pop()
