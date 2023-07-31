@@ -3,7 +3,7 @@
 #include <stdbool.h>
 struct node
 {
-    int data;
+    char data;
     struct node *next;
 }*top=NULL;
 
@@ -29,22 +29,35 @@ bool Is_empty(){
         return false;
 }
 
-int pop()
+void pop()
 {
     struct node *t;
     t=(struct node *)malloc(sizeof(struct node));
-    int x=-1;
-
-    if(top==NULL)
-        printf("Stack is empty\n");
+    if(top==NULL)return;
     else
     {
         t=top;
         top=top->next;
-        x=t->data;
         free(t);
     }
-    return x;
+}
+
+bool is_balanced(char *exp){
+    for (int  i = 0; exp[i]!='\0'; i++)
+    {
+        if (exp[i]=='(')
+            push(exp[i]);
+        else if (exp[i]==')')
+        {
+            if (Is_empty())
+                return false;
+            else
+                pop();
+            
+        }
+    }
+    if(Is_empty())return true;
+    else return false;
 }
 
 void display()
@@ -62,13 +75,10 @@ void display()
 
 int main()
 {
-    push(12);
-    push(34);
-    push(56);
-    push(34);
-    push(67);
-    display();
-    printf("The deleted element is %d\n",pop());
-    display();
+    char *exp="(())+()()()";
+    if (is_balanced(exp))
+        printf("BALANCED\n");
+    else
+        printf("NOT BALANCED\n");
     return 0;
 }
